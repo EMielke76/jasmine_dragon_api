@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_205302) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.string "street_adress"
+    t.string "street_address"
     t.string "city"
     t.string "state"
     t.string "zipcode"
