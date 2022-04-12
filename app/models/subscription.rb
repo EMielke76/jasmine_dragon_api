@@ -2,6 +2,7 @@ class Subscription < ApplicationRecord
   belongs_to :user
 
   validates :tea_id, presence: true
+  validates :tea_name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
 
   enum status: { active: 0, inactive: 1}
