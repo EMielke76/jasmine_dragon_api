@@ -1,10 +1,10 @@
 class Api::V1::TeasController < ApplicationController
 
   def index
-    this = TeaFacade.get_all_teas
-    json_response(TeaSerializer.new(this), :ok)
+    json_response(TeaSerializer.new(TeaFacade.get_all_teas), :ok)
   end
 
   def show
+    json_response(TeaSerializer.new(TeaFacade.get_one_tea(params[:id])), :ok)
   end
 end
