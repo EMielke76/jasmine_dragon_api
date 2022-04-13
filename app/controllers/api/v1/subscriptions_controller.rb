@@ -1,5 +1,9 @@
 class Api::V1::SubscriptionsController < ApplicationController
 
+  def index
+    json_response(User.find(params[:user_id]).subscriptions, :ok)
+  end
+
   def create
     sub = Subscription.create(subscription_params)
     if sub.save
