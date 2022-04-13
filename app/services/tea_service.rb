@@ -5,6 +5,11 @@ class TeaService
     body = parse_json(response)
   end
 
+  def get_one_tea(name)
+    response = conn.get("/tea/#{name}")
+    body = parse_json(response)
+  end
+
   private
   def conn
     Faraday.new(url: "https://tea-api-vic-lo.herokuapp.com")
