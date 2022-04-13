@@ -24,3 +24,6 @@
 
 # Ignore coverage
 /coverage
+
+# Ignore VCR files
+/spec/fixtures

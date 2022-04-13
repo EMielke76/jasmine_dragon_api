@@ -9,6 +9,10 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
+  def destroy
+    Subscription.find(params[:id]).destroy
+  end
+
   private
   def subscription_params
     params.require(:subscription).permit(:user_id, :tea_id, :tea_name, :status, :frequency)
