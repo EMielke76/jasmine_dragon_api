@@ -8,7 +8,7 @@ RSpec.describe 'Teas Index endpoint' do
         get "/api/v1/teas"
 
         results = JSON.parse(response.body, symbolize_names: true)
-        
+
         expect(response).to have_http_status(200)
         expect(results).to be_a(Hash)
         expect(results).to have_key(:data)
@@ -23,7 +23,7 @@ RSpec.describe 'Teas Index endpoint' do
           expect(tea[:id]).to be_a(String)
 
           expect(tea).to have_key(:type)
-          expect(tea[:type]).to be_a(String)
+          expect(tea[:type]).to eq("tea")
 
           expect(tea).to have_key(:attributes)
           expect(tea[:attributes]).to be_a(Hash)
