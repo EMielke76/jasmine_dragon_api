@@ -13,6 +13,18 @@ RSpec.describe Subscription do
     it { should define_enum_for(:frequency).with_values([:weekly, :bi_weekly, :monthly]) }
   end
 
+  describe 'set_price' do
+    it 'sets a price based on frequency desired' do
+      sub_1 = create(:subscription, frequency: 0)
+      sub_2 = create(:subscription, frequency: 1)
+      sub_3 = create(:subscription, frequency: 2)
+
+      expect(sub_1.price).to eq(1000)
+      expect(sub_2.price).to eq(900)
+      expect(sub_3.price).to eq(700)
+    end
+  end
+
   describe 'factory_bot test' do
     it 'exists' do
       subscription = create(:subscription)
