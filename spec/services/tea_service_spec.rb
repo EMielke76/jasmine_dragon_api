@@ -37,5 +37,38 @@ RSpec.describe TeaService do
         end
       end
     end
+
+    context '#get_one_tea' do
+      it 'returns tea data' do
+        VCR.use_cassette('get-one-tea') do
+          query = TeaService.new
+          tea_name = "green"
+          result = query.get_one_tea(tea_name)
+
+          expect(result).to be_a(Hash)
+
+          expect(result).to have_key(:_id)
+          expect(result[:_id]).to be_a(String)
+
+          expect(result).to have_key(:name)
+          expect(result[:name]).to be_a(String)
+
+          expect(result).to have_key(:description)
+          expect(result[:description]).to be_a(String)
+
+          expect(result).to have_key(:keywords)
+          expect(result[:keywords]).to be_a(String)
+
+          expect(result).to have_key(:origin)
+          expect(result[:origin]).to be_a(String)
+
+          expect(result).to have_key(:brew_time)
+          expect(result[:brew_time]).to be_a(Integer)
+
+          expect(result).to have_key(:temperature)
+          expect(result[:temperature]).to be_a(Integer || Float)
+        end
+      end
+    end
   end
 end
