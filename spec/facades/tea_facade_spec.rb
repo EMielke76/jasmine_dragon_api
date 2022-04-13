@@ -13,5 +13,14 @@ RSpec.describe TeaFacade do
         end
       end
     end
+
+    context '::get_one_tea' do
+      it 'returns Tea data', :vcr do
+        tea_name = "green"
+        results = TeaFacade.get_one_tea(tea_name)
+
+        expect(results).to be_a(Tea)
+      end
+    end
   end
 end

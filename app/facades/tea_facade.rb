@@ -6,6 +6,10 @@ class TeaFacade
       end
     end
 
+    def get_one_tea(name)
+      Tea.new(service.get_one_tea(name))
+    end
+
     private
 
     def service
