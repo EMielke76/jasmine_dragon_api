@@ -24,6 +24,8 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def destroy
     Subscription.find(params[:id]).destroy
+    rescue ActiveRecord::RecordNotFound
+      render json: { status: 404, message: "Subscription Not Found", data:{} }, status: :not_found 
   end
 
   private
