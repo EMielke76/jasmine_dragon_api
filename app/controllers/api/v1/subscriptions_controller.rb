@@ -20,12 +20,14 @@ class Api::V1::SubscriptionsController < ApplicationController
     else
       render json: { status: 400, message: "#{sub.errors.full_messages.to_sentence}", data:{} }, status: :bad_request
     end
+    rescue ActiveRecord::RecordNotFound
+      save_and_continue
   end
 
   def destroy
     Subscription.find(params[:id]).destroy
     rescue ActiveRecord::RecordNotFound
-      render json: { status: 404, message: "Subscription Not Found", data:{} }, status: :not_found 
+      save_and_continue
   end
 
   private
