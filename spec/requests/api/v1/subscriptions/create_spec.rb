@@ -65,4 +65,72 @@ RSpec.describe 'Create a subscritpion' do
       end
     end
   end
+
+  context 'sad path' do
+    it 'returns errors if request does not pass validations' do
+      VCR.use_cassette('bad-request') do
+        user_1 = create(:user)
+
+        headers = { 'CONTENT_TYPE' => 'application/json' }
+          params = {
+            "subscription"=> {
+               "user_id"=>"",
+               "tea_id"=>"",
+               "tea_name"=>"",
+               "status"=>"",
+               "frequency"=>""
+              }
+            }
+
+        post "/api/v1/subscriptions", headers: headers, params: JSON.generate(params)
+
+        results = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(400)
+
+        expect(results).to be_a(Hash)
+        expect(results).to have_key(:data)
+        expect(results[:data]).to eq({})
+
+        expect(results).to have_key(:status)
+        expect(results[:status]).to eq(400)
+
+        expect(results).to have_key(:message)
+        expect(results[:message]).to eq("User must exist, Tea can't be blank, and Tea name can't be blank")
+      end
+    end
+
+    it 'returns errors if User does not exist' do
+      VCR.use_cassette('no-user') do
+        user_1 = create(:user)
+
+        headers = { 'CONTENT_TYPE' => 'application/json' }
+          params = {
+            "subscription"=> {
+               "user_id"=>"89",
+               "tea_id"=>"5fa3fd48d5ba620017ec1c09",
+               "tea_name"=>"green",
+               "status"=>"active",
+               "frequency"=>"weekly"
+              }
+            }
+
+        post "/api/v1/subscriptions", headers: headers, params: JSON.generate(params)
+
+        results = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(400)
+
+        expect(results).to be_a(Hash)
+        expect(results).to have_key(:data)
+        expect(results[:data]).to eq({})
+
+        expect(results).to have_key(:status)
+        expect(results[:status]).to eq(400)
+
+        expect(results).to have_key(:message)
+        expect(results[:message]).to eq("User must exist")
+      end
+    end
+  end
 end
