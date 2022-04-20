@@ -27,6 +27,17 @@ At a minimum, the following functionality must be built:
 - An endpoint to cancel a customer’s tea subscription
 - An endpoint to see all of a customer’s subsciptions (active and cancelled)
 
+Additional Endpoints Created:
+- GET All teas.
+- GET A single tea.
+- PATCH Update a users' subscription frequency or status.
+- DELETE Delete a subscription.
+
+Additional Functionality implimented:
+- Consumed external API for tea data, seralized and exposed two endpoints for said data.  
+- Created dynamic pricing for subscriptions based on frequency.
+- Prepped to handle User data storage via Bcrypt encryption.
+ 
 ### <ins>DB Schema</ins>
 ![image](https://user-images.githubusercontent.com/81482407/163424555-7d254e18-ec58-4ad1-b2b7-1a25ebb7571a.png)
 
