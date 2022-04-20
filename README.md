@@ -1,4 +1,7 @@
 # [Jasmine Dragon API](https://github.com/EMielke76/jasmine_dragon_api)
+
+*"So I was thinking about names for my new tea shop… how about… the Jasmine Dragon? It’s dramatic, poetic… has a nice ring to it." --Uncle Iroh, "Avatar: The Last Airbender"*
+
 ![languages](https://img.shields.io/github/languages/top/emielke76/jasmine_dragon_api?color=red)
 ![PRs](https://img.shields.io/github/issues-pr-closed/emielke76/jasmine_dragon_api)
 ![rspec](https://img.shields.io/gem/v/rspec?color=blue&label=rspec)
